@@ -4,22 +4,17 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-:root {
-  --black-text-color: #2c2c2c;
-}
-
 body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #e5e5e5;
+  user-select: none;
 }
 
-canvas {
-  border-radius: 10px;
-  background-color: white;
+h1 {
+  color: #252525;
 }
 
 #field-space {
@@ -27,19 +22,34 @@ canvas {
   flex-wrap: wrap;
 }
 
-.field {
-  display: grid;
-  background-color: white;
-  margin: 10px;
-  grid-template-columns: repeat(11, 1fr);
-  border: 1px solid black;
+.marker__wrapper {
+  width: 1em;
+  height: 1em;
 }
 
-.cell {
-  border: 1px solid black;
-  padding: 15px;
+.marker {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.field {
+  display: grid;
+  margin: 10px;
+  grid-template-columns: repeat(11, 1fr);
+}
+
+.game-cell {
+  border: 1px solid #b4b4ff;
+  padding: 10px;
+}
+
+.coordinate-cell {
+  color: #252525;
+  padding: 10px;
 }
 
 .enemy-cell:hover {
-  background-color: gray;
+  background-color: lightgreen;
+  border: 3px solid green;
 }
