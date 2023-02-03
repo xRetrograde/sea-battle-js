@@ -51,7 +51,8 @@ function generateCells() {
                 playerCell.classList.remove(...playerCell.classList);
                 enemyCell.classList.remove(...enemyCell.classList);
             }
-
+            
+            // TODO: исправить кринж
             if (x != 0 || y != 0) {
                 if (x == 0) {
                     numerateCell('letter', playerCell, rowCounter);
