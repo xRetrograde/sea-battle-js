@@ -1,3 +1,3 @@
 const startButton = document.getElementById('start');
 
-startButton.addEventListener('click', () => createElements(startButton))
+startButton.addEventListener('click', () => createFields(startButton))
