@@ -1,7 +1,11 @@
 class Cell {
-    constructor(pointX, pointY) {
-        this.pointX = pointX;
-        this.pointY = pointY;
+    /**
+     * Класс, реализующий механику ячейки на игровом поле
+     * @param {*} point Координаты в виде класса Point
+     */
+
+    constructor(point) {
+        this.point = point;
         this.isBusy = false;
         this.isDestroyed = false
     }
