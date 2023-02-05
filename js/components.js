@@ -1,10 +1,10 @@
+/**
+ * Функция нумерации клетки
+ * @param {string} type Тип помечаемого символа (number или letter)
+ * @param {object} node Клетка, которую необходимо пометить
+ * @param {number} index Индекс символа (от A до K, или от 1 до 10)
+ */
 function numerateCell(type, node, index) {
-    /**
-     * Функция нумерации клетки
-     * @param {string} type Тип помечаемого символа (number или letter)
-     * @param {object} node Клетка, которую необходимо пометить
-     * @param {number} index Индекс символа (от A до K, или от 1 до 10)
-     */
 
     const cellNumbers = [...Array(11).keys()];
     const cellLetters = [...Array(11)].map((_, i) => String.fromCharCode('A'.charCodeAt(0) + i));
@@ -24,10 +24,10 @@ function numerateCell(type, node, index) {
     cellContent.appendChild(cellMarker);
 }
 
+/**
+ * Функция, генерирующая клетки на игровых полях
+ */
 function generateCells() {
-    /**
-     * Функция, генерирующая клетки на игровых полях
-     */
 
     const fields = document.getElementsByClassName('field');
     const cellCount = 11;
@@ -71,11 +71,11 @@ function generateCells() {
     }
 }
 
+/**
+ * Функция, генерирующая игровые поля
+ * @param {object} startButton Кнопка запуска игры
+ */
 function createFields(startButton) {
-    /**
-     * Функция, генерирующая игровые поля
-     * @param {object} startButton Кнопка запуска игры
-     */
 
     const fieldSpace = document.getElementById('field-space');
     const playerField = document.createElement('div');
