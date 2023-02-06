@@ -1,92 +1,56 @@
 /**
- * Функция нумерации клетки
- * @param {string} type Тип помечаемого символа (number или letter)
- * @param {object} node Клетка, которую необходимо пометить
- * @param {number} index Индекс символа (от A до K, или от 1 до 10)
+ * Функция нумерации клетки 
+ * @param {object} cell Клетка, которую необходимо пометить
+ * @param {markerType} node Тип помечаемого символа (number или letter)
+ * @param {number} index Индекс символа (от A до J, или от 1 до 10)
  */
-function numerateCell(type, node, index) {
 
-    const cellNumbers = [...Array(11).keys()];
-    const cellLetters = [...Array(11)].map((_, i) => String.fromCharCode('A'.charCodeAt(0) + i));
-    const cellContent = document.createElement('div');
-    const cellMarker = document.createElement('div');
+function markCell(cell, markerType, index) {
+  const numbers = [...Array(11).keys()];
+  const markText = document.createTextNode(
+    (markerType == "number"
+      ? numbers
+      : numbers.map((_, i) => String.fromCharCode("A".charCodeAt(0) + i)))[
+      index
+    ]
+  );
 
-    node.classList.remove(...node.classList);
-    node.classList.add('coordinate-cell');
-    cellContent.classList.add('marker__wrapper');
-    cellMarker.classList.add('marker');
-    cellMarker.innerHTML = {
-        number: cellNumbers,
-        letter: cellLetters
-    }[type][index];
+  const mark = document.createElement("div");
 
-    node.appendChild(cellContent);
-    cellContent.appendChild(cellMarker);
-}
+  mark.classList.add("marker");
+  mark.appendChild(markText);
 
-/**
- * Функция, генерирующая клетки на игровых полях
- */
-function generateCells() {
-
-    const fields = document.getElementsByClassName('field');
-    const cellCount = 11;
-    let rowCounter = cellCounter = 0;
-
-    for (let x = 0; x < cellCount; x++) {
-        for (let y = 0; y < cellCount; y++) {
-            const playerCell = document.createElement('div');
-            const enemyCell = document.createElement('div');
-
-            playerCell.classList.add('game-cell', 'player-cell');
-            enemyCell.classList.add('game-cell', 'enemy-cell')
-
-            playerCell.id = `player_${x}_${y}`;
-            enemyCell.id = `enemy_${x}_${y}`;
-
-            fields[0].appendChild(playerCell);
-            fields[1].appendChild(enemyCell);
-
-            if (x == 0 && y == 0) {
-                playerCell.classList.remove(...playerCell.classList);
-                enemyCell.classList.remove(...enemyCell.classList);
-            }
-            
-            // TODO: исправить кринж
-            if (x != 0 || y != 0) {
-                if (x == 0) {
-                    numerateCell('letter', playerCell, rowCounter);
-                    numerateCell('letter', enemyCell, rowCounter);
-                    rowCounter++;
-                }
-
-                if (y == 0) {
-                    numerateCell('number', playerCell, cellCounter);
-                    numerateCell('number', enemyCell, cellCounter);
-                    cellCounter++;
-                }
-            }
-        }
-        rowCounter = 0;
-    }
+  cell.appendChild(mark);
 }
 
 /**
  * Функция, генерирующая игровые поля
- * @param {object} startButton Кнопка запуска игры
  */
-function createFields(startButton) {
 
-    const fieldSpace = document.getElementById('field-space');
-    const playerField = document.createElement('div');
-    const enemyField = document.createElement('div');
+function createFields() {
+  const fieldSpace = document.getElementById("field-space");
 
-    playerField.className = enemyField.className = 'field';
+  for (let fieldNumber = 0; fieldNumber < 2; fieldNumber++) {
+    const fieldType = fieldNumber ? "enemy" : "game";
+    const field = document.createElement("div");
 
-    fieldSpace.append(playerField);
-    fieldSpace.append(enemyField);
+    field.classList.add("field", `${fieldType}-field`);
+    fieldSpace.appendChild(field);
 
-    startButton.value = 'Перезапустить матч';
+    for (let x = 0; x < 11; x++) {
+      for (let y = 0; y < 11; y++) {
+        const cell = document.createElement("div");
 
-    generateCells()
+        if ((!x && y) || (x && !y)) {
+          const markerType = !x ? "number" : "letter";
+          markCell(cell, markerType, markerType == "number" ? y : x - 1);
+        } else if (x && y) {
+          cell.id = `${fieldType}-field_${x}_${y}`;
+          cell.classList.add("game-cell", `${fieldType}-cell`);
+        }
+
+        field.appendChild(cell);
+      }
+    }
+  }
 }
