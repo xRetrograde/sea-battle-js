@@ -11,9 +11,6 @@ body {
   align-items: center;
   justify-content: center;
   user-select: none;
-}
-
-h1 {
   color: #252525;
 }
 
@@ -22,15 +19,10 @@ h1 {
   flex-wrap: wrap;
 }
 
-.marker__wrapper {
-  width: 1em;
-  height: 1em;
-}
-
 .marker {
-  width: 100%;
   text-align: center;
   font-weight: bold;
+  padding: 10px;
 }
 
 .field {
@@ -40,16 +32,11 @@ h1 {
 }
 
 .game-cell {
+  margin: 1px;
   border: 1px solid #b4b4ff;
-  padding: 10px;
-}
-
-.coordinate-cell {
-  color: #252525;
-  padding: 10px;
 }
 
 .enemy-cell:hover {
   background-color: lightgreen;
-  border: 3px solid green;
+  border: 1px solid green;
 }
