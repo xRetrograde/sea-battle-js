@@ -1,3 +1,1 @@
-document.getElementById("start").addEventListener("click", () => {
-  createFields();
-});
+document.getElementById("start").addEventListener("click", createFields);
