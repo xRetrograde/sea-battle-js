@@ -29,7 +29,7 @@ function createFields() {
   const fieldSpace = document.getElementById("field-space");
 
   for (let fieldNumber = 0; fieldNumber < 2; fieldNumber++) {
-    const fieldType = fieldNumber ? "enemy" : "game";
+    const fieldType = fieldNumber ? "enemy" : "player";
     const field = document.createElement("div");
 
     field.classList.add("field", `${fieldType}-field`);
@@ -44,7 +44,7 @@ function createFields() {
           const node = markCell(markerType, markerType == "number" ? y : x - 1);
           currentCell.appendChild(node);
         } else if (x && y) {
-          currentCell.id = `${fieldType}-field_${x}_${y}`;
+          currentCell.id = `${fieldType}_${x}_${y}`;
           currentCell.classList.add("game-cell", `${fieldType}-cell`);
         }
 
